@@ -1,6 +1,12 @@
 .App {
   text-align: center;
   width: 80%;
-  
+  font-family: 'Red Hat Display', sans-serif;
+  margin: 20px auto;
+  font-size: 30px;
 }
 
+:root{
+  background-color: rgb(24, 24, 96);
+  color: white;
+}
