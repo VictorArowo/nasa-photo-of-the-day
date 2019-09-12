@@ -1,13 +1,49 @@
 import React, { useEffect, useState } from 'react';
-import './App.css';
-import Title from '../Title';
-import Media from '../Media';
-import Explanation from '../Explanation';
-import Copyright from '../Copyright.js';
+import Title from './Title';
+import Media from './Media';
+import Explanation from './Explanation';
+import Copyright from './Copyright.js';
 import axios from 'axios';
-import Date from '../Date';
-import Logo from '../Logo';
-import Video from '../Video';
+import Date from './Date';
+import Logo from './Logo';
+import Video from './Video';
+import styled from 'styled-components';
+
+const Div = styled.div`
+  text-align: center;
+  font-family: 'Fjalla One', sans-serif;
+  font-size: 20px;
+  color: white;
+  background: linear-gradient(to right, #141e30, #243b55);
+  overflow: auto;
+
+  .header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 50px 10px;
+  }
+
+  main {
+    display: flex;
+    margin: 30px 30px;
+    margin-top: 50px;
+  }
+
+  .left {
+    flex-basis: 40%;
+    margin: auto auto;
+
+    &p {
+      line-height: 30px;
+      text-align: left;
+    }
+  }
+
+  .right {
+    margin: auto auto;
+  }
+`;
 
 function App() {
   const [data, setData] = useState(null);
@@ -25,7 +61,7 @@ function App() {
 
   return (
     data && (
-      <div className="App">
+      <Div>
         <div className="header">
           <Logo />
           <h1>PHOTO OF THE DAY</h1>
@@ -45,7 +81,7 @@ function App() {
           </div>
         </main>
         <Copyright copyright={data.data.copyright} />
-      </div>
+      </Div>
     )
   );
 }
