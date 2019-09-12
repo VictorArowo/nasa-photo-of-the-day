@@ -14,12 +14,11 @@ function App() {
   const [date, setDate] = useState(null);
 
   let url = data
-    ? `https://api.nasa.gov/planetary/apod?api_key=9UdplyYCf4mfiY3844IdwEkUafrZXfrU9ciSXQcX&date=${date}`
-    : 'https://lambda-github-api-server.herokuapp.com';
+    ? `https://api.nasa.gov/planetary/apod?api_key=${process.env.REACT_APP_API_KEY}&date=${date}`
+    : `https://api.nasa.gov/planetary/apod?api_key=${process.env.REACT_APP_API_KEY}`;
   useEffect(() => {
     axios.get(url).then(res => {
       setData(res);
-      console.log(res);
     });
   }, [date]);
 
