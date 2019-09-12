@@ -6,13 +6,15 @@ import Explanation from '../Explanation/Explanation';
 import Copyright from '../Copyright/Copyright';
 import axios from 'axios';
 import Date from '../Date/Date';
+import Logo from '../Logo/Logo';
+import Video from '../Video/Video';
 
 function App() {
   const [data, setData] = useState(null);
   const [date, setDate] = useState(null);
 
   let url = data
-    ? `https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&date=${date}`
+    ? `https://api.nasa.gov/planetary/apod?api_key=9UdplyYCf4mfiY3844IdwEkUafrZXfrU9ciSXQcX&date=${date}`
     : 'https://lambda-github-api-server.herokuapp.com';
   useEffect(() => {
     axios.get(url).then(res => {
@@ -24,10 +26,24 @@ function App() {
   return (
     data && (
       <div className="App">
-        <Date date={data.data.date} setdate={setDate} />
-        <Title title={data.data.title} />
-        <Media url={data.data.url} />
-        <Explanation source={data.data.explanation} />
+        <div className="header">
+          <Logo />
+          <h1>PHOTO OF THE DAY</h1>
+          <Date date={data.data.date} setdate={setDate} />
+        </div>
+        <main>
+          <div className="left">
+            <Title title={data.data.title} />
+            <Explanation source={data.data.explanation} />
+          </div>
+          <div className="right">
+            {data.data.media_type === 'image' ? (
+              <Media url={data.data.url} />
+            ) : (
+              <Video url={data.data.url} />
+            )}
+          </div>
+        </main>
         <Copyright copyright={data.data.copyright} />
       </div>
     )
